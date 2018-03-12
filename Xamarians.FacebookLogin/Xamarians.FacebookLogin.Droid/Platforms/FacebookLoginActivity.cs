@@ -102,6 +102,16 @@ namespace Xamarians.FacebookLogin.Droid.Platforms
                 }
                 else
                 {
+                   if(jsonData == null)
+                   {
+                    fbActivityComplete.SetResult(new FbLoginResult
+                     {
+                        Status = status,
+                        Message = message
+                     });
+                   }
+                   else
+                   {
                     var userInfo = JsonConvert.DeserializeObject<FbLoginResult>(jsonData);
                     fbActivityComplete.SetResult(new FbLoginResult
                     {
@@ -113,6 +123,7 @@ namespace Xamarians.FacebookLogin.Droid.Platforms
                         Name = userInfo.Name,
                         Email = userInfo.Email,
                     });
+                  }
                 }
 
             }
